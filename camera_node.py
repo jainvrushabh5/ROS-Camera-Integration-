@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
 import rospy
-import cv2
+import cv2 
 
 class Camera_node:
     def __init__(self):
         rospy.init_node('camera', anonymous=False)
-        self.vid = cv2.VideoCapture(0)
+        self.vid = cv2.VideoCapture(0)   # capturing video through camera 
 
-        # Define output video properties
+        # Video Encoding Converting into web compatible format using opencv  
         self.frame_width = int(self.vid.get(cv2.CAP_PROP_FRAME_WIDTH))
         self.frame_height = int(self.vid.get(cv2.CAP_PROP_FRAME_HEIGHT))
         self.fps = 30
@@ -23,7 +23,7 @@ class Camera_node:
             self.video_writer.write(frame)
 
             cv2.imshow('frame', frame)
-            if cv2.waitKey(1) & 0xFF == ord("q"):
+            if cv2.waitKey(1) & 0xFF == ord("q"):     # Press q to quick 
                 break
 
         self.vid.release()
